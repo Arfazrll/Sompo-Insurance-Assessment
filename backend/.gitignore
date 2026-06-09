@@ -1,0 +1,17 @@
+.mvn/
+target/
+*.class
+*.jar
+*.war
+*.log
+*.iml
+.idea/
+*.swp
+*~
+.DS_Store
+application-local.properties
+
+# Env files
+.env
+.env.*
+!.env.example

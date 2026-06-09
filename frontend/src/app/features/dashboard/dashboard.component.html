@@ -1,0 +1,86 @@
+<div class="dashboard">
+  <div class="dashboard-header">
+    <h1>Dashboard</h1>
+    <p>Selamat datang, <strong>{{ (authService.currentUser$ | async)?.fullName }}</strong></p>
+  </div>
+
+  <div class="stats-grid" *ngIf="!isLoading">
+    <mat-card class="stat-card total">
+      <mat-card-content>
+        <div class="stat-info">
+          <span class="stat-value">{{ totalTasks }}</span>
+          <span class="stat-label">Total Tugas</span>
+        </div>
+        <mat-icon class="stat-icon">assignment</mat-icon>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card todo">
+      <mat-card-content>
+        <div class="stat-info">
+          <span class="stat-value">{{ todoCount }}</span>
+          <span class="stat-label">To Do</span>
+        </div>
+        <mat-icon class="stat-icon">pending_actions</mat-icon>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card progress">
+      <mat-card-content>
+        <div class="stat-info">
+          <span class="stat-value">{{ inProgressCount }}</span>
+          <span class="stat-label">In Progress</span>
+        </div>
+        <mat-icon class="stat-icon">autorenew</mat-icon>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card done">
+      <mat-card-content>
+        <div class="stat-info">
+          <span class="stat-value">{{ doneCount }}</span>
+          <span class="stat-label">Done</span>
+        </div>
+        <mat-icon class="stat-icon">check_circle</mat-icon>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-card class="completion-card" *ngIf="!isLoading">
+    <mat-card-header>
+      <mat-card-title>Progress Keseluruhan</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="progress-container">
+        <mat-progress-bar mode="determinate" [value]="getCompletionPercentage()"></mat-progress-bar>
+        <span class="progress-text">{{ getCompletionPercentage() }}% selesai</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="recent-tasks-card" *ngIf="!isLoading && tasks.length > 0">
+    <mat-card-header>
+      <mat-card-title>Tugas Terbaru</mat-card-title>
+      <a mat-button color="primary" routerLink="/tasks">Lihat Semua</a>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let task of tasks.slice(0, 5)" class="task-item">
+          <mat-icon matListItemIcon [class]="'status-icon ' + task.status.toLowerCase()">
+            {{ task.status === 'DONE' ? 'check_circle' : task.status === 'IN_PROGRESS' ? 'autorenew' : 'radio_button_unchecked' }}
+          </mat-icon>
+          <div matListItemTitle>{{ task.title }}</div>
+          <div matListItemLine class="task-meta">
+            <span class="status-badge" [class]="task.status.toLowerCase()">{{ task.status | titlecase }}</span>
+            <span class="assigned-to" *ngIf="task.assignedTo">{{ task.assignedTo.fullName }}</span>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="loading-container" *ngIf="isLoading">
+    <mat-spinner diameter="48"></mat-spinner>
+    <p>Memuat data...</p>
+  </div>
+</div>

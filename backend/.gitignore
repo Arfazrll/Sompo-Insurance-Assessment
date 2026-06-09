@@ -10,3 +10,8 @@ target/
 *~
 .DS_Store
 application-local.properties
+
+# Env files
+.env
+.env.*
+!.env.example

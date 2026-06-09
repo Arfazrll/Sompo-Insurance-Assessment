@@ -1,0 +1,53 @@
+<h2 mat-dialog-title>{{ isEdit ? 'Edit Tugas' : 'Buat Tugas Baru' }}</h2>
+
+<mat-dialog-content>
+  <div class="form-alert" *ngIf="errorMessage">
+    <mat-icon>error_outline</mat-icon>
+    <span>{{ errorMessage }}</span>
+  </div>
+
+  <form [formGroup]="taskForm" id="task-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Judul Tugas</mat-label>
+      <input matInput formControlName="title" placeholder="Masukkan judul tugas (min. 5 karakter)" id="task-title">
+      <mat-error *ngIf="taskForm.get('title')?.touched">
+        {{ getErrorMessage('title') }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Deskripsi</mat-label>
+      <textarea matInput formControlName="description" rows="3"
+                placeholder="Deskripsi tugas (opsional)" id="task-description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status" id="task-status">
+        <mat-option *ngFor="let opt of statusOptions" [value]="opt.value">
+          {{ opt.label }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Ditugaskan Ke</mat-label>
+      <mat-select formControlName="assignedToId" id="task-assigned-to">
+        <mat-option *ngFor="let user of users" [value]="user.id">
+          {{ user.fullName }} ({{ user.email }})
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="taskForm.get('assignedToId')?.touched">
+        {{ getErrorMessage('assignedToId') }}
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()" [disabled]="isLoading" id="task-cancel">Batal</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="isLoading" id="task-submit">
+    <mat-spinner *ngIf="isLoading" diameter="18" class="btn-spinner"></mat-spinner>
+    <span *ngIf="!isLoading">{{ isEdit ? 'Simpan' : 'Buat' }}</span>
+  </button>
+</mat-dialog-actions>

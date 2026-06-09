@@ -59,17 +59,32 @@ CREATE DATABASE task_management_db;
 GO
 ```
 
-### 2. Konfigurasi Connection String
+### 2. Konfigurasi Connection String & Environment
 
-Edit file `backend/src/main/resources/application.properties`:
+Aplikasi ini menggunakan file Environment (`.env`) untuk menjaga kerahasiaan data sensitif.
 
+**Backend (.env):**
+Buat file `backend/.env` (Anda bisa menyalin dari `backend/.env.example`):
 ```properties
-spring.datasource.url=jdbc:sqlserver://localhost:1433;databaseName=task_management_db;encrypt=true;trustServerCertificate=true
-spring.datasource.username=sa
-spring.datasource.password=YourPassword123!
+DB_URL=jdbc:sqlserver://localhost:1433;databaseName=task_management_db;encrypt=true;trustServerCertificate=true
+DB_USERNAME=sa
+DB_PASSWORD=MasukkanPasswordAndaDisini
+
+JWT_SECRET=TaskManagementSecretKey2024SompoInsuranceAssessmentJWTSecretKeyMinimal256Bits
+JWT_EXPIRATION=86400000
+CORS_ALLOWED_ORIGINS=http://localhost:4200
 ```
 
-> **Catatan**: Sesuaikan `username`, `password`, dan `port` dengan konfigurasi SQL Server Anda.
+**Frontend (environment.ts):**
+Buat file `frontend/src/environments/environment.ts` (salin dari `environment.example.ts`):
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8080/api'
+};
+```
+
+> **Catatan**: Sesuaikan `DB_PASSWORD` dengan konfigurasi SQL Server Anda. File-file ini sudah masuk ke `.gitignore` sehingga aman.
 
 ### 3. Seed Data (Otomatis)
 
@@ -107,7 +122,7 @@ Backend akan berjalan di: `http://localhost:8080`
 ```bash
 cd frontend
 npm install
-ng serve
+npm start
 ```
 
 Frontend akan berjalan di: `http://localhost:4200`
@@ -145,7 +160,7 @@ Frontend akan berjalan di: `http://localhost:4200`
 - ✅ Password terenkripsi BCrypt
 - ✅ Global Exception Handling
 - ✅ Data Seeder untuk akun awal
-- 🔲 Frontend Angular (dalam pengembangan)
+- ✅ Frontend Angular dengan Angular Material
 
 ## Lisensi
 

@@ -7,10 +7,11 @@ import { Component, Input, ViewChild, ElementRef, HostListener, OnInit, OnDestro
 })
 export class AuthIllustrationComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
   @Input() isTyping = false;
-  @Input() isLookingAtEachOther = false;
-  @Input() isPurplePeeking = false;
   @Input() hasPassword = false;
   @Input() hidePassword = true;
+
+  isLookingAtEachOther = false;
+  isPurplePeeking = false;
 
   @ViewChild('purpleRef') purpleRef!: ElementRef<HTMLDivElement>;
   @ViewChild('blackRef') blackRef!: ElementRef<HTMLDivElement>;
@@ -25,6 +26,8 @@ export class AuthIllustrationComponent implements OnInit, OnDestroy, OnChanges, 
 
   private purpleBlinkTimeout: any;
   private blackBlinkTimeout: any;
+  private lookTimeout: any;
+  private peekTimeout: any;
 
   // Cached Positions
   purplePos = { faceX: 0, faceY: 0, bodySkew: 0 };
@@ -51,12 +54,46 @@ export class AuthIllustrationComponent implements OnInit, OnDestroy, OnChanges, 
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (changes['isTyping'] && changes['isTyping'].currentValue === true) {
+      this.isLookingAtEachOther = true;
+      clearTimeout(this.lookTimeout);
+      this.lookTimeout = setTimeout(() => {
+        this.isLookingAtEachOther = false;
+        this.updatePositions();
+      }, 800);
+    }
+
+    if (changes['hidePassword'] || changes['hasPassword']) {
+      this.handlePasswordPeeking();
+    }
+
     this.updatePositions();
+  }
+
+  private handlePasswordPeeking() {
+    clearTimeout(this.peekTimeout);
+    if (this.hasPassword && !this.hidePassword) {
+      const schedulePeek = () => {
+        this.peekTimeout = setTimeout(() => {
+          this.isPurplePeeking = true;
+          this.updatePositions();
+          setTimeout(() => {
+            this.isPurplePeeking = false;
+            this.updatePositions();
+          }, 800);
+        }, Math.random() * 3000 + 2000);
+      };
+      schedulePeek();
+    } else {
+      this.isPurplePeeking = false;
+    }
   }
 
   ngOnDestroy() {
     clearTimeout(this.purpleBlinkTimeout);
     clearTimeout(this.blackBlinkTimeout);
+    clearTimeout(this.lookTimeout);
+    clearTimeout(this.peekTimeout);
   }
 
   @HostListener('window:mousemove', ['$event'])

@@ -38,6 +38,7 @@ import { TaskListComponent } from './features/tasks/task-list/task-list.componen
 import { TaskFormComponent } from './features/tasks/task-form/task-form.component';
 import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confirm-dialog.component';
 import { TaskDetailDialogComponent } from './features/tasks/task-detail-dialog/task-detail-dialog.component';
+import { AuthIllustrationComponent } from './features/auth/components/auth-illustration/auth-illustration.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { TaskDetailDialogComponent } from './features/tasks/task-detail-dialog/t
     TaskListComponent,
     TaskFormComponent,
     ConfirmDialogComponent,
-    TaskDetailDialogComponent
+    TaskDetailDialogComponent,
+    AuthIllustrationComponent
   ],
   imports: [
     BrowserModule,

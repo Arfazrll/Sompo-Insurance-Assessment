@@ -1,0 +1,153 @@
+.hidden-on-mobile {
+  display: none;
+  @media (min-width: 992px) {
+    display: flex;
+  }
+}
+
+.illustration-panel {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #ffffff; /* Latar putih bersih sama seperti sisi kanan */
+  padding: 48px;
+  overflow: hidden;
+  color: #334155; /* Teks abu-abu gelap */
+  /* Remove border so it blends perfectly with the right side */
+  border-right: none;
+  min-height: 100vh;
+
+  .brand {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e293b;
+
+    .brand-icon-wrapper {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(59, 130, 246, 0.1);
+      display: flex; align-items: center; justify-content: center;
+      mat-icon { font-size: 20px; width: 20px; height: 20px; color: #3b82f6; }
+    }
+  }
+
+  .bg-grid-white {
+    position: absolute;
+    inset: 0;
+    /* Grid abu-abu super halus agar menyatu dengan background putih */
+    background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px; /* Dibuat lebih lebar jaraknya */
+    z-index: 1;
+  }
+
+  .blur-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 2;
+    
+    &.top-right {
+      width: 300px; height: 300px;
+      top: 5%; right: 5%;
+      background: rgba(59, 130, 246, 0.15); /* Bercak biru muda */
+    }
+    &.bottom-left {
+      width: 400px; height: 400px;
+      bottom: 5%; left: 5%;
+      background: rgba(234, 179, 8, 0.1); /* Bercak kuning samar */
+    }
+  }
+}
+
+.characters-stage-container {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 600px; /* Diperbesar */
+  padding-bottom: 60px; /* Angkat stage ke atas sedikit */
+}
+
+.characters-stage {
+  position: relative;
+  width: 550px;
+  height: 400px;
+  transform: scale(1.65); /* Membuat karakter jauh lebih besar */
+  transform-origin: bottom center;
+  left: 50px; /* Geser seluruh panggung ke kanan agar posisinya lebih ke tengah */
+
+  .character {
+    position: absolute;
+    bottom: 0;
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: bottom center;
+  }
+
+  .eyes-container {
+    position: absolute;
+    display: flex;
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &.gap-6 { gap: 24px; }
+    &.gap-8 { gap: 32px; }
+  }
+
+  .eyeball {
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: height 0.15s ease-out;
+    overflow: hidden;
+    width: 18px;
+    
+    &.w-16 { width: 16px; }
+  }
+
+  .pupil {
+    background-color: #2D2D2D;
+    border-radius: 50%;
+    width: 7px; height: 7px;
+    transition: transform 0.1s linear;
+
+    &.sm { width: 6px; height: 6px; }
+    &.lg { width: 12px; height: 12px; }
+  }
+
+  .purple-char {
+    left: 70px; width: 180px; background-color: #6C3FF5;
+    border-radius: 10px 10px 0 0; z-index: 1;
+    .eyes-container { gap: 32px; }
+  }
+
+  .black-char {
+    left: 240px; width: 120px; height: 310px; background-color: #2D2D2D;
+    border-radius: 8px 8px 0 0; z-index: 2;
+  }
+
+  .orange-char {
+    left: 0; width: 240px; height: 200px; background-color: #FF9B6B;
+    border-radius: 120px 120px 0 0; z-index: 3;
+  }
+
+  .yellow-char {
+    left: 310px; width: 140px; height: 230px; background-color: #E8D754;
+    border-radius: 70px 70px 0 0; z-index: 4;
+    
+    .yellow-mouth {
+      position: absolute; width: 80px; height: 4px;
+      background-color: #2D2D2D; border-radius: 4px;
+      transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+}

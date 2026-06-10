@@ -1,49 +1,153 @@
-<div class="auth-container">
-  <div class="auth-card">
-    <div class="auth-header">
-      <mat-icon class="auth-icon">assignment</mat-icon>
-      <h1>Task Manager</h1>
-      <p>Masuk ke akun Anda</p>
+<div class="split-layout">
+  <!-- Left Content Section -->
+  <div class="illustration-panel hidden-on-mobile">
+    <div class="brand">
+      <div class="brand-icon-wrapper">
+        <mat-icon>assignment</mat-icon>
+      </div>
+      <span>Task Manager</span>
     </div>
 
-    <div class="auth-alert" *ngIf="errorMessage">
-      <mat-icon>error_outline</mat-icon>
-      <span>{{ errorMessage }}</span>
+    <div class="characters-stage-container">
+      <div class="characters-stage">
+        <!-- Purple tall rectangle character - Back layer -->
+        <div #purpleRef class="character purple-char"
+             [ngStyle]="{
+               'height': (isTyping || (hasPassword && hidePassword)) ? '440px' : '400px',
+               'transform': (hasPassword && !hidePassword) ? 'skewX(0deg)' :
+                            (isTyping || (hasPassword && hidePassword)) ? 'skewX(' + (purplePos.bodySkew - 12) + 'deg) translateX(40px)' :
+                            'skewX(' + purplePos.bodySkew + 'deg)'
+             }">
+          <div class="eyes-container"
+               [ngStyle]="{
+                 'left': (hasPassword && !hidePassword) ? '20px' : isLookingAtEachOther ? '55px' : (45 + purplePos.faceX) + 'px',
+                 'top': (hasPassword && !hidePassword) ? '35px' : isLookingAtEachOther ? '65px' : (40 + purplePos.faceY) + 'px'
+               }">
+            <div class="eyeball" [style.height.px]="isPurpleBlinking ? 2 : 18">
+              <div *ngIf="!isPurpleBlinking" class="pupil"
+                   [ngStyle]="{'transform': 'translate(' + purplePupilPos.x + 'px, ' + purplePupilPos.y + 'px)'}"></div>
+            </div>
+            <div class="eyeball" [style.height.px]="isPurpleBlinking ? 2 : 18">
+              <div *ngIf="!isPurpleBlinking" class="pupil"
+                   [ngStyle]="{'transform': 'translate(' + purplePupilPos.x + 'px, ' + purplePupilPos.y + 'px)'}"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Black tall rectangle character - Middle layer -->
+        <div #blackRef class="character black-char"
+             [ngStyle]="{
+               'transform': (hasPassword && !hidePassword) ? 'skewX(0deg)' :
+                            isLookingAtEachOther ? 'skewX(' + (blackPos.bodySkew * 1.5 + 10) + 'deg) translateX(20px)' :
+                            (isTyping || (hasPassword && hidePassword)) ? 'skewX(' + (blackPos.bodySkew * 1.5) + 'deg)' :
+                            'skewX(' + blackPos.bodySkew + 'deg)'
+             }">
+          <div class="eyes-container gap-6"
+               [ngStyle]="{
+                 'left': (hasPassword && !hidePassword) ? '10px' : isLookingAtEachOther ? '32px' : (26 + blackPos.faceX) + 'px',
+                 'top': (hasPassword && !hidePassword) ? '28px' : isLookingAtEachOther ? '12px' : (32 + blackPos.faceY) + 'px'
+               }">
+            <div class="eyeball w-16" [style.height.px]="isBlackBlinking ? 2 : 16">
+              <div *ngIf="!isBlackBlinking" class="pupil sm"
+                   [ngStyle]="{'transform': 'translate(' + blackPupilPos.x + 'px, ' + blackPupilPos.y + 'px)'}"></div>
+            </div>
+            <div class="eyeball w-16" [style.height.px]="isBlackBlinking ? 2 : 16">
+              <div *ngIf="!isBlackBlinking" class="pupil sm"
+                   [ngStyle]="{'transform': 'translate(' + blackPupilPos.x + 'px, ' + blackPupilPos.y + 'px)'}"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orange semi-circle character - Front left -->
+        <div #orangeRef class="character orange-char"
+             [ngStyle]="{'transform': (hasPassword && !hidePassword) ? 'skewX(0deg)' : 'skewX(' + orangePos.bodySkew + 'deg)'}">
+          <div class="eyes-container gap-8"
+               [ngStyle]="{
+                 'left': (hasPassword && !hidePassword) ? '50px' : (82 + orangePos.faceX) + 'px',
+                 'top': (hasPassword && !hidePassword) ? '85px' : (90 + orangePos.faceY) + 'px'
+               }">
+            <div class="pupil lg" [ngStyle]="{'transform': 'translate(' + orangePupilPos.x + 'px, ' + orangePupilPos.y + 'px)'}"></div>
+            <div class="pupil lg" [ngStyle]="{'transform': 'translate(' + orangePupilPos.x + 'px, ' + orangePupilPos.y + 'px)'}"></div>
+          </div>
+        </div>
+
+        <!-- Yellow tall rectangle character - Front right -->
+        <div #yellowRef class="character yellow-char"
+             [ngStyle]="{'transform': (hasPassword && !hidePassword) ? 'skewX(0deg)' : 'skewX(' + yellowPos.bodySkew + 'deg)'}">
+          <div class="eyes-container gap-6"
+               [ngStyle]="{
+                 'left': (hasPassword && !hidePassword) ? '20px' : (52 + yellowPos.faceX) + 'px',
+                 'top': (hasPassword && !hidePassword) ? '35px' : (40 + yellowPos.faceY) + 'px'
+               }">
+            <div class="pupil lg" [ngStyle]="{'transform': 'translate(' + yellowPupilPos.x + 'px, ' + yellowPupilPos.y + 'px)'}"></div>
+            <div class="pupil lg" [ngStyle]="{'transform': 'translate(' + yellowPupilPos.x + 'px, ' + yellowPupilPos.y + 'px)'}"></div>
+          </div>
+          <!-- Horizontal line for mouth -->
+          <div class="yellow-mouth"
+               [ngStyle]="{
+                 'left': (hasPassword && !hidePassword) ? '10px' : (40 + yellowPos.faceX) + 'px',
+                 'top': (hasPassword && !hidePassword) ? '88px' : (88 + yellowPos.faceY) + 'px'
+               }"></div>
+        </div>
+      </div>
     </div>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" type="email" placeholder="contoh@email.com" id="login-email">
-        <mat-icon matPrefix>email</mat-icon>
-        <mat-error *ngIf="loginForm.get('email')?.touched">
-          {{ getErrorMessage('email') }}
-        </mat-error>
-      </mat-form-field>
+    <!-- Decorative Grid & Blur -->
+    <div class="bg-grid-white"></div>
+    <div class="blur-circle top-right"></div>
+    <div class="blur-circle bottom-left"></div>
+  </div>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Password</mat-label>
-        <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'"
-               placeholder="Masukkan password" id="login-password">
-        <mat-icon matPrefix>lock</mat-icon>
-        <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
-          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+  <!-- Right Login Section -->
+  <div class="form-panel">
+    <div class="auth-card">
+      <div class="auth-header">
+        <mat-icon class="auth-icon mobile-only">assignment</mat-icon>
+        <h1>Welcome back!</h1>
+        <p>Please enter your details</p>
+      </div>
+
+      <div class="auth-alert" *ngIf="errorMessage">
+        <mat-icon>error_outline</mat-icon>
+        <span>{{ errorMessage }}</span>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" placeholder="contoh@email.com" id="login-email"
+                 (focus)="onInputFocus()" (blur)="onInputBlur()">
+          <mat-icon matPrefix>email</mat-icon>
+          <mat-error *ngIf="loginForm.get('email')?.touched">
+            {{ getErrorMessage('email') }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'"
+                 placeholder="Masukkan password" id="login-password"
+                 (focus)="onInputFocus()" (blur)="onInputBlur()">
+          <mat-icon matPrefix>lock</mat-icon>
+          <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.get('password')?.touched">
+            {{ getErrorMessage('password') }}
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" class="full-width submit-btn"
+                [disabled]="isLoading" id="login-submit">
+          <mat-spinner *ngIf="isLoading" diameter="20" class="btn-spinner"></mat-spinner>
+          <span *ngIf="!isLoading">Masuk</span>
         </button>
-        <mat-error *ngIf="loginForm.get('password')?.touched">
-          {{ getErrorMessage('password') }}
-        </mat-error>
-      </mat-form-field>
+      </form>
 
-      <button mat-raised-button color="primary" type="submit" class="full-width submit-btn"
-              [disabled]="isLoading" id="login-submit">
-        <mat-spinner *ngIf="isLoading" diameter="20" class="btn-spinner"></mat-spinner>
-        <span *ngIf="!isLoading">Masuk</span>
-      </button>
-    </form>
-
-    <div class="auth-footer">
-      <span>Belum punya akun?</span>
-      <a routerLink="/register">Daftar di sini</a>
+      <div class="auth-footer">
+        <span>Belum punya akun?</span>
+        <a routerLink="/register">Daftar di sini</a>
+      </div>
     </div>
   </div>
 </div>

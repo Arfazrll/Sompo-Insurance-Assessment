@@ -70,6 +70,7 @@ export class TaskListComponent implements OnInit {
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(TaskFormComponent, {
       width: '560px',
+      maxWidth: '95vw',
       disableClose: true,
       panelClass: 'modern-dialog',
       data: { mode: 'create' }
@@ -83,6 +84,7 @@ export class TaskListComponent implements OnInit {
   openEditDialog(task: TaskResponse): void {
     const dialogRef = this.dialog.open(TaskFormComponent, {
       width: '560px',
+      maxWidth: '95vw',
       disableClose: true,
       panelClass: 'modern-dialog',
       data: { mode: 'edit', task }
@@ -96,6 +98,7 @@ export class TaskListComponent implements OnInit {
   openDetailDialog(task: TaskResponse): void {
     this.dialog.open(TaskDetailDialogComponent, {
       width: '560px',
+      maxWidth: '95vw',
       panelClass: 'modern-dialog',
       data: { task }
     });
@@ -116,6 +119,7 @@ export class TaskListComponent implements OnInit {
   deleteTask(task: TaskResponse): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '400px',
+      maxWidth: '95vw',
       panelClass: 'modern-dialog',
       data: {
         title: 'Konfirmasi Hapus',

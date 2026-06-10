@@ -19,11 +19,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   // Animation State to pass to AuthIllustrationComponent
   isTyping = false;
-  isLookingAtEachOther = false;
-  isPurplePeeking = false;
-
-  private lookTimeout: any;
-  private peekTimeout: any;
 
   constructor(
     private fb: FormBuilder,
@@ -38,23 +33,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.registerForm.get('password')?.valueChanges.subscribe(val => {
-      this.handlePasswordPeeking(val);
-    });
   }
 
   ngOnDestroy() {
-    clearTimeout(this.lookTimeout);
-    clearTimeout(this.peekTimeout);
   }
 
   onInputFocus() {
     this.isTyping = true;
-    this.isLookingAtEachOther = true;
-    clearTimeout(this.lookTimeout);
-    this.lookTimeout = setTimeout(() => {
-      this.isLookingAtEachOther = false;
-    }, 800);
   }
 
   onInputBlur() {
@@ -63,24 +48,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
-    this.handlePasswordPeeking(this.registerForm.get('password')?.value);
-  }
-
-  private handlePasswordPeeking(passwordVal: string) {
-    clearTimeout(this.peekTimeout);
-    if (passwordVal && passwordVal.length > 0 && !this.hidePassword) {
-      const schedulePeek = () => {
-        this.peekTimeout = setTimeout(() => {
-          this.isPurplePeeking = true;
-          setTimeout(() => {
-            this.isPurplePeeking = false;
-          }, 800);
-        }, Math.random() * 3000 + 2000);
-      };
-      schedulePeek();
-    } else {
-      this.isPurplePeeking = false;
-    }
   }
 
   get hasPassword() { return (this.registerForm.get('password')?.value || '').length > 0; }

@@ -2,7 +2,9 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arfazrll_Sompo-Insurance-Assessment&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arfazrll_Sompo-Insurance-Assessment)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Arfazrll_Sompo-Insurance-Assessment&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Arfazrll_Sompo-Insurance-Assessment)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Arfazrll_Sompo-Insurance-Assessment&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Arfazrll_Sompo-Insurance-Assessment)
+
+[🔍 Buka Laporan Analisis Kode Lengkap di SonarCloud](https://sonarcloud.io/summary/overall?id=Arfazrll_Sompo-Insurance-Assessment)
+
 Aplikasi web **Task Management System** untuk mengelola daftar tugas harian user secara CRUD (Create, Read, Update, Delete) dengan sistem otentikasi berbasis peran (role-based).
 
 ## Tech Stack

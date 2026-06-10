@@ -1,102 +1,13 @@
 <div class="split-layout">
   <!-- Left Content Section -->
-  <div class="illustration-panel hidden-on-mobile">
-    <div class="brand">
-      <div class="brand-icon-wrapper">
-        <mat-icon>assignment</mat-icon>
-      </div>
-      <span>Task Manager</span>
-    </div>
-
-    <div class="characters-stage-container">
-      <div class="characters-stage">
-        <!-- Purple tall rectangle character - Back layer -->
-        <div #purpleRef class="character purple-char"
-             [ngStyle]="{
-               'height': (isTyping || (hasPassword && hidePassword)) ? '440px' : '400px',
-               'transform': (hasPassword && !hidePassword) ? 'skewX(0deg)' :
-                            (isTyping || (hasPassword && hidePassword)) ? 'skewX(' + (purplePos.bodySkew - 12) + 'deg) translateX(40px)' :
-                            'skewX(' + purplePos.bodySkew + 'deg)'
-             }">
-          <div class="eyes-container"
-               [ngStyle]="{
-                 'left': (hasPassword && !hidePassword) ? '20px' : isLookingAtEachOther ? '55px' : (45 + purplePos.faceX) + 'px',
-                 'top': (hasPassword && !hidePassword) ? '35px' : isLookingAtEachOther ? '65px' : (40 + purplePos.faceY) + 'px'
-               }">
-            <div class="eyeball" [style.height.px]="isPurpleBlinking ? 2 : 18">
-              <div *ngIf="!isPurpleBlinking" class="pupil"
-                   [ngStyle]="{'transform': 'translate(' + purplePupilPos.x + 'px, ' + purplePupilPos.y + 'px)'}"></div>
-            </div>
-            <div class="eyeball" [style.height.px]="isPurpleBlinking ? 2 : 18">
-              <div *ngIf="!isPurpleBlinking" class="pupil"
-                   [ngStyle]="{'transform': 'translate(' + purplePupilPos.x + 'px, ' + purplePupilPos.y + 'px)'}"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Black tall rectangle character - Middle layer -->
-        <div #blackRef class="character black-char"
-             [ngStyle]="{
-               'transform': (hasPassword && !hidePassword) ? 'skewX(0deg)' :
-                            isLookingAtEachOther ? 'skewX(' + (blackPos.bodySkew * 1.5 + 10) + 'deg) translateX(20px)' :
-                            (isTyping || (hasPassword && hidePassword)) ? 'skewX(' + (blackPos.bodySkew * 1.5) + 'deg)' :
-                            'skewX(' + blackPos.bodySkew + 'deg)'
-             }">
-          <div class="eyes-container gap-6"
-               [ngStyle]="{
-                 'left': (hasPassword && !hidePassword) ? '10px' : isLookingAtEachOther ? '32px' : (26 + blackPos.faceX) + 'px',
-                 'top': (hasPassword && !hidePassword) ? '28px' : isLookingAtEachOther ? '12px' : (32 + blackPos.faceY) + 'px'
-               }">
-            <div class="eyeball w-16" [style.height.px]="isBlackBlinking ? 2 : 16">
-              <div *ngIf="!isBlackBlinking" class="pupil sm"
-                   [ngStyle]="{'transform': 'translate(' + blackPupilPos.x + 'px, ' + blackPupilPos.y + 'px)'}"></div>
-            </div>
-            <div class="eyeball w-16" [style.height.px]="isBlackBlinking ? 2 : 16">
-              <div *ngIf="!isBlackBlinking" class="pupil sm"
-                   [ngStyle]="{'transform': 'translate(' + blackPupilPos.x + 'px, ' + blackPupilPos.y + 'px)'}"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Orange semi-circle character - Front left -->
-        <div #orangeRef class="character orange-char"
-             [ngStyle]="{'transform': (hasPassword && !hidePassword) ? 'skewX(0deg)' : 'skewX(' + orangePos.bodySkew + 'deg)'}">
-          <div class="eyes-container gap-8"
-               [ngStyle]="{
-                 'left': (hasPassword && !hidePassword) ? '50px' : (82 + orangePos.faceX) + 'px',
-                 'top': (hasPassword && !hidePassword) ? '85px' : (90 + orangePos.faceY) + 'px'
-               }">
-            <div class="pupil lg" [ngStyle]="{'transform': 'translate(' + orangePupilPos.x + 'px, ' + orangePupilPos.y + 'px)'}"></div>
-            <div class="pupil lg" [ngStyle]="{'transform': 'translate(' + orangePupilPos.x + 'px, ' + orangePupilPos.y + 'px)'}"></div>
-          </div>
-        </div>
-
-        <!-- Yellow tall rectangle character - Front right -->
-        <div #yellowRef class="character yellow-char"
-             [ngStyle]="{'transform': (hasPassword && !hidePassword) ? 'skewX(0deg)' : 'skewX(' + yellowPos.bodySkew + 'deg)'}">
-          <div class="eyes-container gap-6"
-               [ngStyle]="{
-                 'left': (hasPassword && !hidePassword) ? '20px' : (52 + yellowPos.faceX) + 'px',
-                 'top': (hasPassword && !hidePassword) ? '35px' : (40 + yellowPos.faceY) + 'px'
-               }">
-            <div class="pupil lg" [ngStyle]="{'transform': 'translate(' + yellowPupilPos.x + 'px, ' + yellowPupilPos.y + 'px)'}"></div>
-            <div class="pupil lg" [ngStyle]="{'transform': 'translate(' + yellowPupilPos.x + 'px, ' + yellowPupilPos.y + 'px)'}"></div>
-          </div>
-          <!-- Horizontal line for mouth -->
-          <div class="yellow-mouth"
-               [ngStyle]="{
-                 'left': (hasPassword && !hidePassword) ? '10px' : (40 + yellowPos.faceX) + 'px',
-                 'top': (hasPassword && !hidePassword) ? '88px' : (88 + yellowPos.faceY) + 'px'
-               }"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Decorative Grid & Blur -->
-    <div class="bg-grid-white"></div>
-    <div class="blur-circle top-right"></div>
-    <div class="blur-circle bottom-left"></div>
-  </div>
+  <app-auth-illustration 
+    class="hidden-on-mobile"
+    [isTyping]="isTyping"
+    [isLookingAtEachOther]="isLookingAtEachOther"
+    [isPurplePeeking]="isPurplePeeking"
+    [hasPassword]="hasPassword"
+    [hidePassword]="hidePassword">
+  </app-auth-illustration>
 
   <!-- Right Register Section -->
   <div class="form-panel">

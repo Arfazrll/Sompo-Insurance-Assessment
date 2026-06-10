@@ -1,10 +1,5 @@
 # Task Management System
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arfazrll_Sompo-Insurance-Assessment&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arfazrll_Sompo-Insurance-Assessment)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Arfazrll_Sompo-Insurance-Assessment&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Arfazrll_Sompo-Insurance-Assessment)
-
-[🔍 Buka Laporan Analisis Kode Lengkap di SonarCloud](https://sonarcloud.io/summary/overall?id=Arfazrll_Sompo-Insurance-Assessment)
-
 Aplikasi web **Task Management System** untuk mengelola daftar tugas harian user secara CRUD (Create, Read, Update, Delete) dengan sistem otentikasi berbasis peran (role-based).
 
 ## Tech Stack
@@ -170,6 +165,11 @@ Frontend akan berjalan di: `http://localhost:4200`
 - ✅ Global Exception Handling
 - ✅ Data Seeder untuk akun awal
 - ✅ Frontend Angular dengan Angular Material
+
+## Analisis Kualitas Kode
+
+Kode pada proyek ini telah diuji keamanannya dan kemudahannya dalam perawatan menggunakan SonarCloud.
+[Buka Laporan Analisis Kode Lengkap di SonarCloud](https://sonarcloud.io/summary/overall?id=Arfazrll_Sompo-Insurance-Assessment)
 
 ## Lisensi
 

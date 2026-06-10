@@ -58,6 +58,11 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     // Initial calculation trigger
+    setTimeout(() => {
+      this.mouseX = window.innerWidth / 2;
+      this.mouseY = window.innerHeight / 2;
+      this.updatePositions();
+    });
   }
 
   ngOnDestroy() {
@@ -71,6 +76,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   onMouseMove(event: MouseEvent) {
     this.mouseX = event.clientX;
     this.mouseY = event.clientY;
+    this.updatePositions();
   }
 
   // Blinking Logics
@@ -100,18 +106,22 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   onInputFocus() {
     this.isTyping = true;
     this.isLookingAtEachOther = true;
+    this.updatePositions();
     clearTimeout(this.lookTimeout);
     this.lookTimeout = setTimeout(() => {
       this.isLookingAtEachOther = false;
+      this.updatePositions();
     }, 800);
   }
 
   onInputBlur() {
     this.isTyping = false;
+    this.updatePositions();
   }
 
   togglePasswordVisibility() {
     this.hidePassword = !this.hidePassword;
+    this.updatePositions();
     this.handlePasswordPeeking(this.loginForm.get('password')?.value);
   }
 
@@ -121,16 +131,30 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
       const schedulePeek = () => {
         this.peekTimeout = setTimeout(() => {
           this.isPurplePeeking = true;
+          this.updatePositions();
           setTimeout(() => {
             this.isPurplePeeking = false;
+            this.updatePositions();
           }, 800);
         }, Math.random() * 3000 + 2000);
       };
       schedulePeek();
     } else {
       this.isPurplePeeking = false;
+      this.updatePositions();
     }
   }
+
+  // Cached Positions
+  purplePos = { faceX: 0, faceY: 0, bodySkew: 0 };
+  blackPos = { faceX: 0, faceY: 0, bodySkew: 0 };
+  yellowPos = { faceX: 0, faceY: 0, bodySkew: 0 };
+  orangePos = { faceX: 0, faceY: 0, bodySkew: 0 };
+
+  purplePupilPos = { x: 0, y: 0 };
+  blackPupilPos = { x: 0, y: 0 };
+  orangePupilPos = { x: 0, y: 0 };
+  yellowPupilPos = { x: 0, y: 0 };
 
   // Calculate Positions
   calculatePosition(ref: ElementRef<HTMLDivElement> | undefined) {
@@ -149,11 +173,6 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
     return { faceX, faceY, bodySkew };
   }
-
-  get purplePos() { return this.calculatePosition(this.purpleRef); }
-  get blackPos() { return this.calculatePosition(this.blackRef); }
-  get yellowPos() { return this.calculatePosition(this.yellowRef); }
-  get orangePos() { return this.calculatePosition(this.orangeRef); }
 
   get isPasswordVisible() { return !this.hidePassword; }
   get hasPassword() { return (this.loginForm.get('password')?.value || '').length > 0; }
@@ -180,29 +199,27 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     return { x, y };
   }
 
-  // Getters for Pupil Positions
-  get purplePupilPos() {
-    const forceLookX = (this.hasPassword && !this.hidePassword) ? (this.isPurplePeeking ? 4 : -4) : this.isLookingAtEachOther ? 3 : undefined;
-    const forceLookY = (this.hasPassword && !this.hidePassword) ? (this.isPurplePeeking ? 5 : -4) : this.isLookingAtEachOther ? 4 : undefined;
-    return this.calculatePupilPosition(this.purpleRef, 5, forceLookX, forceLookY);
-  }
+  updatePositions() {
+    this.purplePos = this.calculatePosition(this.purpleRef);
+    this.blackPos = this.calculatePosition(this.blackRef);
+    this.yellowPos = this.calculatePosition(this.yellowRef);
+    this.orangePos = this.calculatePosition(this.orangeRef);
 
-  get blackPupilPos() {
-    const forceLookX = (this.hasPassword && !this.hidePassword) ? -4 : this.isLookingAtEachOther ? 0 : undefined;
-    const forceLookY = (this.hasPassword && !this.hidePassword) ? -4 : this.isLookingAtEachOther ? -4 : undefined;
-    return this.calculatePupilPosition(this.blackRef, 4, forceLookX, forceLookY);
-  }
+    const forcePurpleX = (this.hasPassword && !this.hidePassword) ? (this.isPurplePeeking ? 4 : -4) : this.isLookingAtEachOther ? 3 : undefined;
+    const forcePurpleY = (this.hasPassword && !this.hidePassword) ? (this.isPurplePeeking ? 5 : -4) : this.isLookingAtEachOther ? 4 : undefined;
+    this.purplePupilPos = this.calculatePupilPosition(this.purpleRef, 5, forcePurpleX, forcePurpleY);
 
-  get orangePupilPos() {
-    const forceLookX = (this.hasPassword && !this.hidePassword) ? -5 : undefined;
-    const forceLookY = (this.hasPassword && !this.hidePassword) ? -4 : undefined;
-    return this.calculatePupilPosition(this.orangeRef, 5, forceLookX, forceLookY);
-  }
+    const forceBlackX = (this.hasPassword && !this.hidePassword) ? -4 : this.isLookingAtEachOther ? 0 : undefined;
+    const forceBlackY = (this.hasPassword && !this.hidePassword) ? -4 : this.isLookingAtEachOther ? -4 : undefined;
+    this.blackPupilPos = this.calculatePupilPosition(this.blackRef, 4, forceBlackX, forceBlackY);
 
-  get yellowPupilPos() {
-    const forceLookX = (this.hasPassword && !this.hidePassword) ? -5 : undefined;
-    const forceLookY = (this.hasPassword && !this.hidePassword) ? -4 : undefined;
-    return this.calculatePupilPosition(this.yellowRef, 5, forceLookX, forceLookY);
+    const forceOrangeX = (this.hasPassword && !this.hidePassword) ? -5 : undefined;
+    const forceOrangeY = (this.hasPassword && !this.hidePassword) ? -4 : undefined;
+    this.orangePupilPos = this.calculatePupilPosition(this.orangeRef, 5, forceOrangeX, forceOrangeY);
+
+    const forceYellowX = (this.hasPassword && !this.hidePassword) ? -5 : undefined;
+    const forceYellowY = (this.hasPassword && !this.hidePassword) ? -4 : undefined;
+    this.yellowPupilPos = this.calculatePupilPosition(this.yellowRef, 5, forceYellowX, forceYellowY);
   }
 
   onSubmit(): void {

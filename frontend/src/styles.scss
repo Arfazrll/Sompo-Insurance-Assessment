@@ -70,3 +70,7 @@ a {
   text-decoration: none;
   transition: color 0.2s ease-in-out;
 }
+
+.modern-dialog .mdc-dialog__surface {
+  border-radius: 20px !important;
+}

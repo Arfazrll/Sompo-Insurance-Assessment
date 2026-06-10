@@ -71,6 +71,7 @@ export class TaskListComponent implements OnInit {
     const dialogRef = this.dialog.open(TaskFormComponent, {
       width: '560px',
       disableClose: true,
+      panelClass: 'modern-dialog',
       data: { mode: 'create' }
     });
 
@@ -83,6 +84,7 @@ export class TaskListComponent implements OnInit {
     const dialogRef = this.dialog.open(TaskFormComponent, {
       width: '560px',
       disableClose: true,
+      panelClass: 'modern-dialog',
       data: { mode: 'edit', task }
     });
 
@@ -94,6 +96,7 @@ export class TaskListComponent implements OnInit {
   openDetailDialog(task: TaskResponse): void {
     this.dialog.open(TaskDetailDialogComponent, {
       width: '560px',
+      panelClass: 'modern-dialog',
       data: { task }
     });
   }
@@ -113,6 +116,7 @@ export class TaskListComponent implements OnInit {
   deleteTask(task: TaskResponse): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '400px',
+      panelClass: 'modern-dialog',
       data: {
         title: 'Konfirmasi Hapus',
         message: `Yakin ingin menghapus tugas "${task.title}"? Tindakan ini tidak dapat dibatalkan.`

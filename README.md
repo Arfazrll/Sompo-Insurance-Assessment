@@ -166,6 +166,11 @@ Frontend akan berjalan di: `http://localhost:4200`
 - ✅ Data Seeder untuk akun awal
 - ✅ Frontend Angular dengan Angular Material
 
+## Analisis Kualitas Kode
+
+Kode pada proyek ini telah diuji keamanannya dan kemudahannya dalam perawatan menggunakan SonarCloud.
+[Buka Laporan Analisis Kode Lengkap di SonarCloud](https://sonarcloud.io/summary/overall?id=Arfazrll_Sompo-Insurance-Assessment)
+
 ## Lisensi
 
 Proyek ini dibuat untuk keperluan Technical Assessment Sompo Insurance.

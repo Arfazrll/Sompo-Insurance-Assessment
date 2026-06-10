@@ -46,7 +46,7 @@ GO
 
 -- ============================================
 -- Seed Data: Akun Awal
--- Password terenkripsi BCrypt (admin123 dan user1234)
+-- Password terenkripsi BCrypt
 -- ============================================
 IF NOT EXISTS (SELECT 1 FROM users WHERE email = 'admin@taskmanager.com')
 BEGIN

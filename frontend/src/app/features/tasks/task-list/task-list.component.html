@@ -4,8 +4,8 @@
       <h1>Daftar Tugas</h1>
       <p>Kelola semua tugas tim Anda</p>
     </div>
-    <button mat-raised-button color="primary" (click)="openCreateDialog()"
-            *ngIf="authService.isAdmin()" id="btn-create-task">
+    <button mat-raised-button color="primary" (click)="openCreateDialog()" *ngIf="authService.isAdmin()"
+      id="btn-create-task">
       <mat-icon>add</mat-icon>
       Buat Tugas
     </button>
@@ -15,17 +15,17 @@
   <mat-card class="filter-card">
     <mat-card-content>
       <div class="filter-row">
-        <mat-form-field appearance="outline" class="search-field">
+        <mat-form-field appearance="outline" class="search-field" subscriptSizing="dynamic">
           <mat-label>Cari tugas...</mat-label>
-          <input matInput [(ngModel)]="searchQuery" (keyup.enter)="onSearch()"
-                 placeholder="Cari berdasarkan judul" id="search-input">
+          <input matInput [(ngModel)]="searchQuery" (keyup.enter)="onSearch()" placeholder="Cari berdasarkan judul"
+            id="search-input">
           <mat-icon matPrefix>search</mat-icon>
           <button mat-icon-button matSuffix *ngIf="searchQuery" (click)="searchQuery = ''; onSearch()">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="status-field">
+        <mat-form-field appearance="outline" class="status-field" subscriptSizing="dynamic">
           <mat-label>Filter Status</mat-label>
           <mat-select [(ngModel)]="filterStatus" (selectionChange)="onFilterChange()" id="filter-status">
             <mat-option value="">Semua Status</mat-option>
@@ -35,8 +35,7 @@
           </mat-select>
         </mat-form-field>
 
-        <button mat-stroked-button (click)="clearFilters()" class="clear-btn"
-                *ngIf="searchQuery || filterStatus">
+        <button mat-stroked-button (click)="clearFilters()" class="clear-btn" *ngIf="searchQuery || filterStatus">
           <mat-icon>filter_list_off</mat-icon>
           Reset
         </button>
@@ -57,9 +56,9 @@
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef>Judul</th>
         <td mat-cell *matCellDef="let task">
-          <div class="task-title-cell">
+          <div class="task-title-cell" (click)="openDetailDialog(task)" matTooltip="Klik untuk melihat detail" matTooltipPosition="above">
             <strong>{{ task.title }}</strong>
-            <span class="task-desc" *ngIf="task.description">{{ task.description }}</span>
+            <span class="task-desc">{{ task.description || 'Tidak ada deskripsi.' }}</span>
           </div>
         </td>
       </ng-container>
@@ -67,8 +66,8 @@
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef>Status</th>
         <td mat-cell *matCellDef="let task">
-          <mat-select [value]="task.status" (selectionChange)="updateStatus(task, $event.value)"
-                      class="status-select" [class]="task.status.toLowerCase()" id="status-select-{{task.id}}">
+          <mat-select [value]="task.status" (selectionChange)="updateStatus(task, $event.value)" class="status-select"
+            [class]="task.status.toLowerCase()" id="status-select-{{task.id}}">
             <mat-option *ngFor="let opt of statusOptions" [value]="opt.value">
               {{ opt.label }}
             </mat-option>
@@ -96,12 +95,12 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Aksi</th>
         <td mat-cell *matCellDef="let task">
-          <button mat-icon-button color="primary" (click)="openEditDialog(task)"
-                  *ngIf="authService.isAdmin()" matTooltip="Edit Tugas" id="btn-edit-{{task.id}}">
+          <button mat-icon-button color="primary" (click)="openEditDialog(task)" *ngIf="authService.isAdmin()"
+            matTooltip="Edit Tugas" id="btn-edit-{{task.id}}">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn" (click)="deleteTask(task)"
-                  *ngIf="authService.isAdmin()" matTooltip="Hapus Tugas" id="btn-delete-{{task.id}}">
+          <button mat-icon-button color="warn" (click)="deleteTask(task)" *ngIf="authService.isAdmin()"
+            matTooltip="Hapus Tugas" id="btn-delete-{{task.id}}">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
@@ -120,7 +119,7 @@
       <p *ngIf="searchQuery || filterStatus">Coba ubah kata kunci pencarian atau filter</p>
       <p *ngIf="!searchQuery && !filterStatus">Belum ada tugas yang dibuat</p>
       <button mat-raised-button color="primary" (click)="openCreateDialog()"
-              *ngIf="authService.isAdmin() && !searchQuery && !filterStatus">
+        *ngIf="authService.isAdmin() && !searchQuery && !filterStatus">
         <mat-icon>add</mat-icon> Buat Tugas Pertama
       </button>
     </mat-card-content>

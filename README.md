@@ -165,3 +165,7 @@ Frontend akan berjalan di: `http://localhost:4200`
 ## Lisensi
 
 Proyek ini dibuat untuk keperluan Technical Assessment Sompo Insurance.
+
+---
+**Disclaimer:**
+*Basis kode pada repositori ini dikembangkan dengan bantuan kecerdasan buatan (AI) sebagai alat pendamping (pair-programming assistant). Meskipun demikian, arsitektur, desain sistem, logika bisnis, dan penyelesaian masalah diinisiasi dan diarahkan secara mandiri untuk memastikan standar industri, keamanan, dan fungsionalitas yang optimal terpenuhi.*

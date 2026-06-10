@@ -1,0 +1,46 @@
+<div class="dialog-header">
+  <h2 mat-dialog-title>Detail Tugas</h2>
+  <button mat-icon-button mat-dialog-close class="close-btn">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+  <div class="detail-section">
+    <label>Judul</label>
+    <h3>{{ data.task.title }}</h3>
+  </div>
+
+  <div class="detail-section">
+    <label>Status</label>
+    <div>
+      <span class="status-badge" [class]="data.task.status.toLowerCase()">
+        {{ getStatusLabel(data.task.status) }}
+      </span>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <label>Ditugaskan Ke</label>
+    <div class="assigned-user">
+      <mat-icon>person</mat-icon>
+      <span>{{ data.task.assignedTo.fullName }}</span>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <label>Dibuat Pada</label>
+    <p>{{ data.task.createdAt | date:'dd MMM yyyy, HH:mm' }}</p>
+  </div>
+
+  <div class="detail-section">
+    <label>Deskripsi</label>
+    <div class="description-box">
+      {{ data.task.description || 'Tidak ada deskripsi.' }}
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Tutup</button>
+</mat-dialog-actions>

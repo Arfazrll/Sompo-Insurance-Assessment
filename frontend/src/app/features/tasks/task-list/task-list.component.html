@@ -7,7 +7,7 @@
     <button mat-raised-button color="primary" (click)="openCreateDialog()" *ngIf="authService.isAdmin()"
       id="btn-create-task">
       <mat-icon>add</mat-icon>
-      List Tugas
+      Buat Tugas
     </button>
   </div>
 
@@ -56,9 +56,9 @@
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef>Judul</th>
         <td mat-cell *matCellDef="let task">
-          <div class="task-title-cell">
+          <div class="task-title-cell" (click)="openDetailDialog(task)" matTooltip="Klik untuk melihat detail" matTooltipPosition="above">
             <strong>{{ task.title }}</strong>
-            <span class="task-desc" *ngIf="task.description">{{ task.description }}</span>
+            <span class="task-desc">{{ task.description || 'Tidak ada deskripsi.' }}</span>
           </div>
         </td>
       </ng-container>

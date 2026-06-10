@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskFormComponent } from '../task-form/task-form.component';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { TaskDetailDialogComponent } from '../task-detail-dialog/task-detail-dialog.component';
 
 @Component({
   selector: 'app-task-list',
@@ -87,6 +88,13 @@ export class TaskListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) this.loadTasks();
+    });
+  }
+
+  openDetailDialog(task: TaskResponse): void {
+    this.dialog.open(TaskDetailDialogComponent, {
+      width: '560px',
+      data: { task }
     });
   }
 

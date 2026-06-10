@@ -36,6 +36,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { TaskListComponent } from './features/tasks/task-list/task-list.component';
 import { TaskFormComponent } from './features/tasks/task-form/task-form.component';
+import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { TaskFormComponent } from './features/tasks/task-form/task-form.componen
     LayoutComponent,
     DashboardComponent,
     TaskListComponent,
-    TaskFormComponent
+    TaskFormComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

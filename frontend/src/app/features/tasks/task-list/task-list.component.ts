@@ -5,6 +5,7 @@ import { TaskResponse, TASK_STATUS_OPTIONS } from '../../../shared/models/task.m
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskFormComponent } from '../task-form/task-form.component';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-task-list',
@@ -102,15 +103,25 @@ export class TaskListComponent implements OnInit {
   }
 
   deleteTask(task: TaskResponse): void {
-    if (!confirm(`Yakin ingin menghapus tugas "${task.title}"?`)) return;
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+      data: {
+        title: 'Konfirmasi Hapus',
+        message: `Yakin ingin menghapus tugas "${task.title}"? Tindakan ini tidak dapat dibatalkan.`
+      }
+    });
 
-    this.taskService.deleteTask(task.id).subscribe({
-      next: () => {
-        this.showNotification('Tugas berhasil dihapus');
-        this.loadTasks();
-      },
-      error: () => {
-        this.showNotification('Gagal menghapus tugas', true);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.taskService.deleteTask(task.id).subscribe({
+          next: () => {
+            this.showNotification('Tugas berhasil dihapus');
+            this.loadTasks();
+          },
+          error: () => {
+            this.showNotification('Gagal menghapus tugas', true);
+          }
+        });
       }
     });
   }

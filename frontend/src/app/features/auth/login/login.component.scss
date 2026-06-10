@@ -78,9 +78,9 @@
     font-size: 56px;
     width: 56px;
     height: 56px;
-    color: #e73c7e;
+    color: #3b82f6;
     margin-bottom: 16px;
-    filter: drop-shadow(0 4px 8px rgba(231, 60, 126, 0.3));
+    filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3));
     transition: transform 0.3s ease;
 
     &:hover {
@@ -93,7 +93,7 @@
     font-size: 32px;
     font-weight: 800;
     /* Gradient Text */
-    background: linear-gradient(to right, #e73c7e, #23a6d5);
+    background: linear-gradient(to right, #3b82f6, #2563eb);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.5px;
@@ -112,10 +112,10 @@
   align-items: center;
   gap: 8px;
   padding: 12px 16px;
-  background: #fce4ec;
+  background: #fee2e2;
   border-radius: 12px;
   margin-bottom: 24px;
-  color: #c62828;
+  color: #ef4444;
   font-size: 14px;
   font-weight: 500;
 
@@ -128,6 +128,7 @@
 
 .full-width {
   width: 100%;
+  margin-bottom: 16px; /* Added to prevent overlap of error messages */
 }
 
 ::ng-deep .mat-mdc-form-field-flex {
@@ -140,15 +141,15 @@
   font-weight: 700;
   margin-top: 12px;
   border-radius: 12px !important;
-  background: linear-gradient(135deg, #e73c7e, #23a6d5) !important;
+  background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
   color: white !important;
   border: none;
-  box-shadow: 0 8px 15px rgba(35, 166, 213, 0.3) !important;
+  box-shadow: 0 8px 15px rgba(59, 130, 246, 0.3) !important;
   transition: all 0.3s ease !important;
   
   &:not([disabled]):hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 20px rgba(35, 166, 213, 0.4) !important;
+    box-shadow: 0 12px 20px rgba(59, 130, 246, 0.4) !important;
   }
 
   &[disabled] {
@@ -173,7 +174,7 @@
   font-weight: 500;
 
   a {
-    color: #e73c7e;
+    color: #3b82f6;
     font-weight: 700;
     text-decoration: none;
     margin-left: 4px;
@@ -217,11 +218,10 @@
     h1 {
       font-size: 32px;
       margin-bottom: 8px;
-      color: #1e293b; /* Biru gelap/slate */
     }
     .auth-icon {
-      background: rgba(59, 130, 246, 0.1);
-      color: #3b82f6; /* Biru murni */
+      /* Keep standard style but align left */
+      margin-bottom: 12px;
     }
   }
 
@@ -242,7 +242,7 @@
   position: relative;
   flex-direction: column;
   justify-content: space-between;
-  background: #f8fafc; /* Latar putih/abu-abu sangat terang */
+  background: #ffffff; /* Latar putih bersih sama seperti sisi kanan */
   padding: 48px;
   overflow: hidden;
   color: #334155; /* Teks abu-abu gelap */
@@ -307,7 +307,7 @@
   position: relative;
   width: 550px;
   height: 400px;
-  transform: scale(1.15); /* Membuat karakter lebih besar */
+  transform: scale(1.4); /* Membuat karakter lebih besar */
   transform-origin: bottom center;
 
   .character {

@@ -223,7 +223,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
@@ -241,5 +241,11 @@
     font-size: 40px;
     width: 40px;
     height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
   }
 }

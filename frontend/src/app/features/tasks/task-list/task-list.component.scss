@@ -92,8 +92,15 @@
   border: 1px solid rgba(255,255,255,0.8);
 }
 
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .task-table {
   width: 100%;
+  min-width: 700px; /* Force minimum width to enable scrolling on small screens */
 
   th.mat-mdc-header-cell {
     font-size: 13px;

@@ -129,6 +129,10 @@ Frontend akan berjalan di: `http://localhost:4200`
 
 ## API Endpoints
 
+[📚 Buka Dokumentasi API Lengkap di Postman](https://red-star-87385.postman.co/workspace/Task-Management-Docs~5f42feb4-7ffd-4fa8-b0dc-d1f1edc22696/collection/39986471-af86a1cb-aaa4-4631-885c-2d3dba8b1b13?action=share&creator=39986471)
+
+*(Catatan: Anda juga dapat mengimpor file `Task_Management_System_API.postman_collection.json` yang tersedia di dalam repositori ini secara lokal ke dalam Postman Anda).*
+
 ### Autentikasi
 
 | Method | Endpoint             | Deskripsi            | Akses   |
@@ -168,4 +172,4 @@ Proyek ini dibuat untuk keperluan Technical Assessment Sompo Insurance.
 
 ---
 **Disclaimer:**
-*Codebase pada repositori ini dikembangkan dengan bantuan AI sebagai alat pendamping (pair-programming assistant). Meskipun demikian, arsitektur, desain sistem, logika bisnis, dan penyelesaian masalah diinisiasi, diarahkan, dan direview secara mandiri untuk memastikan standar industri, keamanan, dan fungsionalitas yang optimal terpenuhi sesuai dengan requirement yang diberikan.*
+*Codebase pada repositori ini dikembangkan dengan bantuan AI sebagai alat pendamping (pair-programming assistant). Meskipun demikian, arsitektur, desain sistem, logika bisnis, dan penyelesaian masalah diinisiasi, diarahkan, dan direview secara mandiri untuk memastikan standar industri, keamanan, dan fungsionalitas yang optimal terpenuhi sesuai degn requirment yang diberikan.*

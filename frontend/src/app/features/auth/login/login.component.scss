@@ -190,10 +190,10 @@
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
-  background-color: #f8fafc;
+  background-color: #ffffff;
   
   @media (min-width: 992px) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.2fr 1fr; /* Kiri sedikit lebih besar */
   }
 
   /* Override the auth card for the split layout to look flat */
@@ -217,7 +217,17 @@
     h1 {
       font-size: 32px;
       margin-bottom: 8px;
+      color: #1e293b; /* Biru gelap/slate */
     }
+    .auth-icon {
+      background: rgba(59, 130, 246, 0.1);
+      color: #3b82f6; /* Biru murni */
+    }
+  }
+
+  .submit-btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+    color: white !important;
   }
 }
 
@@ -232,10 +242,11 @@
   position: relative;
   flex-direction: column;
   justify-content: space-between;
-  background: linear-gradient(135deg, #1e293b, #334155, #0f172a);
+  background: #f8fafc; /* Latar putih/abu-abu sangat terang */
   padding: 48px;
   overflow: hidden;
-  color: white;
+  color: #334155; /* Teks abu-abu gelap */
+  border-right: 1px solid #e2e8f0;
 
   .brand {
     position: relative;
@@ -244,40 +255,41 @@
     align-items: center;
     gap: 12px;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 700;
+    color: #1e293b;
 
     .brand-icon-wrapper {
       width: 40px; height: 40px;
       border-radius: 10px;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(4px);
+      background: rgba(59, 130, 246, 0.1);
       display: flex; align-items: center; justify-content: center;
-      mat-icon { font-size: 20px; width: 20px; height: 20px; color: white; }
+      mat-icon { font-size: 20px; width: 20px; height: 20px; color: #3b82f6; }
     }
   }
 
   .bg-grid-white {
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
+    background-image: radial-gradient(#cbd5e1 1px, transparent 1px); /* Grid abu-abu samar */
+    background-size: 24px 24px;
     z-index: 1;
   }
 
   .blur-circle {
     position: absolute;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(40px);
+    filter: blur(60px);
     z-index: 2;
     
     &.top-right {
-      width: 250px; height: 250px;
-      top: 10%; right: 10%;
+      width: 300px; height: 300px;
+      top: 5%; right: 5%;
+      background: rgba(59, 130, 246, 0.15); /* Bercak biru muda */
     }
     &.bottom-left {
-      width: 350px; height: 350px;
-      bottom: 10%; left: 10%;
+      width: 400px; height: 400px;
+      bottom: 5%; left: 5%;
+      background: rgba(234, 179, 8, 0.1); /* Bercak kuning samar */
     }
   }
 }
@@ -288,13 +300,15 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  height: 500px;
+  height: 600px; /* Diperbesar */
 }
 
 .characters-stage {
   position: relative;
   width: 550px;
   height: 400px;
+  transform: scale(1.15); /* Membuat karakter lebih besar */
+  transform-origin: bottom center;
 
   .character {
     position: absolute;
@@ -368,6 +382,7 @@
   align-items: center;
   justify-content: center;
   padding: 32px;
+  background-color: #ffffff;
 }
 
 @media (max-width: 480px) {

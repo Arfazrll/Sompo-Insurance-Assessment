@@ -129,7 +129,7 @@ Frontend akan berjalan di: `http://localhost:4200`
 
 ## API Endpoints
 
-[📚 Buka Dokumentasi API Lengkap di Postman](https://red-star-87385.postman.co/workspace/Task-Management-Docs~5f42feb4-7ffd-4fa8-b0dc-d1f1edc22696/collection/39986471-af86a1cb-aaa4-4631-885c-2d3dba8b1b13?action=share&creator=39986471)
+[📚 Buka Dokumentasi API Lengkap di Postman](https://documenter.getpostman.com/view/39986471/2sBXwsK9br)
 
 *(Catatan: Anda juga dapat mengimpor file `docs/Task_Management_System_API.postman_collection.json` yang tersedia di dalam repositori ini secara lokal ke dalam Postman Anda).*
 

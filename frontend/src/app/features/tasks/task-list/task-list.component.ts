@@ -20,7 +20,11 @@ export class TaskListComponent implements OnInit {
   searchQuery = '';
   filterStatus = '';
 
-  displayedColumns = ['title', 'status', 'assignedTo', 'createdAt', 'actions'];
+  get displayedColumns(): string[] {
+    return this.authService.isAdmin() 
+      ? ['title', 'status', 'assignedTo', 'createdAt', 'actions']
+      : ['title', 'status', 'assignedTo', 'createdAt'];
+  }
 
   constructor(
     public authService: AuthService,

@@ -1,3 +1,4 @@
 # IDEs and editors
 .vscode/
 .idea/
+docs/*.pdf

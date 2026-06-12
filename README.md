@@ -16,7 +16,7 @@ Aplikasi web **Task Management System** untuk mengelola daftar tugas harian user
 ## Struktur Monorepo
 
 ```
-Sompo-Insurance-Assessment/
+Task-Management-Assessment/
 ├── backend/                           # Spring Boot API
 │   ├── src/main/java/com/taskmanagement/
 │   │   ├── config/                    # Konfigurasi Security, Data Seeder
@@ -70,7 +70,7 @@ DB_URL=jdbc:sqlserver://localhost:1433;databaseName=task_management_db;encrypt=t
 DB_USERNAME=sa
 DB_PASSWORD=MasukkanPasswordAndaDisini
 
-JWT_SECRET=TaskManagementSecretKey2024SompoInsuranceAssessmentJWTSecretKeyMinimal256Bits
+JWT_SECRET=TaskManagementSecretKey2024CompanyAssessmentJWTSecretKeyMinimal256Bits
 JWT_EXPIRATION=86400000
 CORS_ALLOWED_ORIGINS=http://localhost:4200
 ```
@@ -169,11 +169,11 @@ Frontend akan berjalan di: `http://localhost:4200`
 ## Analisis Kualitas Kode
 
 Kode pada proyek ini telah diuji keamanannya dan kemudahannya dalam perawatan menggunakan SonarCloud.
-[Buka Laporan Analisis Kode Lengkap di SonarCloud](https://sonarcloud.io/summary/overall?id=Arfazrll_Sompo-Insurance-Assessment)
+[Buka Laporan Analisis Kode Lengkap di SonarCloud](https://sonarcloud.io/summary/overall?id=Arfazrll_Task-Management-Assessment)
 
 ## Lisensi
 
-Proyek ini dibuat untuk keperluan Technical Assessment Sompo Insurance.
+Proyek ini dibuat untuk keperluan Technical Assessment.
 
 ---
 **Disclaimer:**

@@ -15,7 +15,7 @@
     <artifactId>task-management-api</artifactId>
     <version>1.0.0</version>
     <name>Task Management API</name>
-    <description>Backend API untuk Task Management System - Sompo Insurance Assessment</description>
+    <description>Backend API untuk Task Management System - Technical Assessment</description>
 
     <properties>
         <java.version>17</java.version>
